@@ -1,0 +1,84 @@
+{
+  "name": "autofill-money-forward",
+  "remoteUser": "autofill-money-forward",
+  "dockerComposeFile": "./compose.dev.yaml",
+  "service": "app",
+  // "postAttachCommand": "px install",
+  "workspaceFolder": "/workspaces/autofill-money-forward",
+  "overrideCommand": true,
+  "shutdownAction": "none",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "albymor.increment-selection",
+        "biomejs.biome",
+        "bodil.file-browser",
+        "christian-kohler.path-intellisense",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "formulahendry.auto-rename-tag",
+        "foxundermoon.shell-format",
+        "GitHub.copilot",
+        "github.vscode-github-actions",
+        "GitHub.vscode-pull-request-github",
+        "Gruntfuggly.todo-tree",
+        "hbenl.vscode-test-explorer",
+        "hediet.vscode-drawio",
+        "irongeek.vscode-env",
+        "kahole.magit",
+        "mhutchie.git-graph",
+        "mikestead.dotenv",
+        "ms-azuretools.vscode-docker",
+        "MS-vsliveshare.vsliveshare",
+        "mutantdino.resourcemonitor",
+        "Perkovec.emoji",
+        "redhat.vscode-yaml",
+        "shd101wyy.markdown-preview-enhanced",
+        "streetsidesoftware.code-spell-checker",
+        "yoavbls.pretty-ts-errors",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.formatOnSaveMode": "file",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "quickfix.biome": "explicit"
+        },
+
+        "files.trimFinalNewlines": true,
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+
+        "eslint.workingDirectories": [{ "mode": "auto" }],
+        "eslint.useFlatConfig": true,
+        "eslint.rules.customizations": [
+          { "rule": "@cspell/spellchecker", "severity": "off" }
+        ],
+
+        "typescript.tsdk": "node_modules/typescript/lib",
+
+        "[typescript][typescriptreact][javascript][json][jsonc]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+
+        "[markdown]": {
+          "editor.unicodeHighlight.ambiguousCharacters": false,
+          "editor.unicodeHighlight.invisibleCharacters": false,
+          "diffEditor.ignoreTrimWhitespace": false,
+          "editor.wordWrap": "on",
+          "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+          },
+          "files.trimTrailingWhitespace": false,
+          "cSpell.fixSpellingWithRenameProvider": true,
+          "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+          "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/"
+        }
+      }
+    }
+  }
+}
