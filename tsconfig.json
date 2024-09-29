@@ -6,7 +6,9 @@
   ],
   "compilerOptions": {
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./src/*"],
+      "~/app/*": ["./src/app/*"],
+      "~/worker/*": ["./src/worker/*"]
     }
   }
 }

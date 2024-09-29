@@ -8,11 +8,16 @@ import vitePluginCopy from "./lib/vite-plugin-copy";
 export default defineConfig(({ mode }) => {
   if (mode === "app") {
     return {
+      root: "src",
       plugins: [
         react(),
         tsconfigPaths(),
-        vitePluginCopy({ from: "app/manifest.json", to: "dist/manifest.json" }),
+        vitePluginCopy({ from: "src/manifest.json", to: "dist/manifest.json" }),
       ],
+      build: {
+        outDir: "../dist",
+        emptyOutDir: false,
+      },
     };
   }
 
@@ -21,7 +26,7 @@ export default defineConfig(({ mode }) => {
     build: {
       emptyOutDir: false,
       rollupOptions: {
-        input: "worker/background.ts",
+        input: "src/worker/background.ts",
         output: {
           entryFileNames: "[name].js",
         },
