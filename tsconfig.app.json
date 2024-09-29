@@ -17,9 +17,16 @@
     "paths": {
       "~/*": ["./src/*"],
       "~/app/*": ["./src/app/*"],
+      "~/lib/*": ["./src/lib/*"],
       "~/worker/*": ["./src/worker/*"]
     },
-    "types": ["chrome-types", "@types/node", "vite/client"],
+    "types": [
+      "chrome-types",
+      "@types/node",
+      "vite/client",
+      "vitest/globals",
+      "vitest/importMeta"
+    ],
 
     /* JavaScript Support */
     "allowJs": false,
@@ -57,6 +64,6 @@
     /* Completeness */
     "skipLibCheck": true
   },
-  "include": ["src/app", "src/worker"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

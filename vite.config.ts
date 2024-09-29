@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
     build: {
       emptyOutDir: false,
       rollupOptions: {
-        input: "src/worker/background.ts",
+        input: ["src/worker/background.ts", "src/worker/content-script.ts"],
         output: {
           entryFileNames: "[name].js",
         },

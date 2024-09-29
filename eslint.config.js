@@ -43,6 +43,9 @@ export default tseslint.config(
         },
       ],
       "import-x/no-named-as-default-member": "off",
+
+      "sonarjs/sonar-no-unused-vars": "off",
+      "sonarjs/todo-tag": "off",
     },
   },
 );

@@ -10,13 +10,15 @@
     "build": "npm-run-all -s build:app build:worker",
     "build:app": "vite build --mode app",
     "build:worker": "vite build",
+    "clean": "rimraf dist",
     "preview": "vite preview",
     "lint": "biome lint --write",
     "lint:legacy": "eslint --fix .",
     "format": "biome format --write",
     "check": "biome check --write",
     "typecheck": "tsc --project tsconfig.json --pretty --noEmit",
-    "check:all": "npm-run-all -s typecheck check lint:legacy"
+    "check:all": "npm-run-all -s typecheck check lint:legacy",
+    "test": "vitest"
   },
   "engines": {
     "npm": "Please use the bun.",
@@ -57,6 +59,7 @@
     "eslint-plugin-import-x": "^4.3.0",
     "eslint-plugin-sonarjs": "^2.0.2",
     "globals": "^15.9.0",
+    "happy-dom": "^15.7.4",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "npm-run-all": "^4.1.5",
