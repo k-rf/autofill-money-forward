@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Projects */
+    "incremental": true,
+
+    /* Language and Environment */
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
+
+    /* Modules */
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
+    "paths": { "~/*": ["./src/*"] },
+    "types": ["chrome-types", "@types/node", "vite/client"],
+
+    /* JavaScript Support */
+    "allowJs": false,
+
+    /* Emit */
+    "outDir": "./dist",
+    "noEmit": true,
+
+    /* Interop Constraints */
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    // "noImplicitAny": true, // strict
+    // "strictNullChecks": true, // strict
+    // "strictFunctionTypes": true, // strict
+    // "strictBindCallApply": true, // strict
+    // "strictPropertyInitialization": true, // strict
+    // "noImplicitThis": true, // strict
+    // "useUnknownInCatchVariables": true, // strict
+    // "alwaysStrict": true, // strict
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

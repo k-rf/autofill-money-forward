@@ -13,6 +13,7 @@
         "albymor.increment-selection",
         "biomejs.biome",
         "bodil.file-browser",
+        "bradlc.vscode-tailwindcss",
         "christian-kohler.path-intellisense",
         "dbaeumer.vscode-eslint",
         "eamodio.gitlens",
@@ -55,6 +56,11 @@
         "eslint.useFlatConfig": true,
         "eslint.rules.customizations": [
           { "rule": "@cspell/spellchecker", "severity": "off" }
+        ],
+
+        "tailwindCSS.experimental.classRegex": [
+          ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+          ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
         ],
 
         "typescript.tsdk": "node_modules/typescript/lib",
