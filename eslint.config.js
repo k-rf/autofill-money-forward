@@ -1,12 +1,13 @@
 // @ts-check
 
-import pluginCspell from "@cspell/eslint-plugin/configs";
+import * as pluginCspell from "@cspell/eslint-plugin/configs";
 import pluginImportX from "eslint-plugin-import-x";
 import pluginSonarjs from "eslint-plugin-sonarjs";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
+  { ignores: ["node_modules", "dist"] },
   { files: ["**/*.{js,mjs,cjs,ts,tsx}"] },
   {
     languageOptions: {

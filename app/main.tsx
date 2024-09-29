@@ -9,10 +9,6 @@ if (!root) {
   throw new Error("Root element not found");
 }
 
-chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true }).catch(() => {
-  console.warn("Failed to set chrome panel behavior");
-});
-
 createRoot(root).render(
   <StrictMode>
     <App />
