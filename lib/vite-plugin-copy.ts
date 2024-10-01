@@ -1,3 +1,9 @@
+/**
+ * ビルド対象には含まれないファイルを、出力ディレクトリにコピーするプラグイン
+ *
+ * 主なユースケースは、manifest.json などのファイルを出力ディレクトリにコピーする場合などです。
+ */
+
 import fs from "node:fs";
 
 import { createLogger } from "vite";
