@@ -1,4 +1,4 @@
-import { ReloadIcon } from "@radix-ui/react-icons";
+import { TrashIcon } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { atLeast } from "~/lib/at-least";
@@ -105,13 +105,13 @@ export const App = ({ config }: Props) => {
             Autofill
           </Button>
           <Button variant="outline" size="icon" onClick={handleReset}>
-            <ReloadIcon />
+            <TrashIcon size={20} />
           </Button>
         </div>
         <Table className="text-nowrap">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-24">日付</TableHead>
+              <TableHead>日付</TableHead>
               <TableHead>金額</TableHead>
               <TableHead>メモ</TableHead>
             </TableRow>
