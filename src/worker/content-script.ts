@@ -45,19 +45,17 @@ const end = async () => {
   await inputElement("#cancel-button", { variant: "click" });
 };
 
-chrome.runtime.onConnect.addListener((port) => {
-  port.onMessage.addListener((payload: Payload[]) => {
-    console.log(payload);
+chrome.runtime.onMessage.addListener((payload: Payload[]) => {
+  const chain = () =>
+    payload.reduce(async (acc, args, index, arr) => {
+      await acc;
+      await flow(args);
 
-    const chain = () =>
-      payload.reduce(async (acc, args, index, arr) => {
-        await acc;
-        await flow(args);
+      if (index !== arr.length - 1) return next();
+      return end();
+    }, Promise.resolve());
 
-        if (index !== arr.length - 1) return next();
-        return end();
-      }, Promise.resolve());
+  void chain();
 
-    void chain();
-  });
+  return true;
 });
