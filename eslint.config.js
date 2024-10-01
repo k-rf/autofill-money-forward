@@ -46,6 +46,7 @@ export default tseslint.config(
 
       "sonarjs/sonar-no-unused-vars": "off",
       "sonarjs/todo-tag": "off",
+      "sonarjs/no-nested-functions": ["error", { threshold: 7 }],
     },
   },
 );

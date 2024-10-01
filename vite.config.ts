@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+import vitePluginCleanupAssets from "./lib/vite-plugin-cleanup-assets";
 import vitePluginCopy from "./lib/vite-plugin-copy";
 
 // https://vitejs.dev/config/
@@ -12,6 +13,7 @@ export default defineConfig(({ mode }) => {
       plugins: [
         react(),
         tsconfigPaths(),
+        vitePluginCleanupAssets(),
         vitePluginCopy({ from: "src/manifest.json", to: "dist/manifest.json" }),
       ],
       build: {
