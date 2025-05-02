@@ -20,6 +20,7 @@
     "nothrow",
     "ossp",
     "parens",
+    "paypay",
     "prebuild",
     "prettierrc",
     "psql",

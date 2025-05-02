@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const TogglCsvHeader = z.tuple([
+export const Toggl = z.tuple([
   z.literal("User"),
   z.literal("Email"),
   z.literal("Client"),
@@ -15,4 +15,4 @@ export const TogglCsvHeader = z.tuple([
   z.literal("Duration"),
   z.literal("Tags"),
 ]);
-export type TogglCsvHeader = z.infer<typeof TogglCsvHeader>;
+export type Toggl = z.infer<typeof Toggl>;

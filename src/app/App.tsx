@@ -1,5 +1,6 @@
 import { TrashIcon } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { match } from "ts-pattern";
 
 import { atLeast } from "~/lib/at-least";
 
@@ -14,7 +15,9 @@ import {
   TableHeader,
   TableRow,
 } from "./components/ui/table";
-import { TogglCsvHeader } from "./models/toggl.model";
+import { PayPay } from "./models/paypay.model";
+import { TogglV2 } from "./models/toggl-v2.model";
+import { Toggl } from "./models/toggl.model";
 
 interface Props {
   config: {
@@ -57,12 +60,16 @@ export const App = ({ config }: Props) => {
     const listener = (e: FileReaderEventMap["load"]) => {
       if (typeof e.target?.result !== "string") return;
 
-      const csv = e.target.result.split("\n").map((row) =>
-        row.split(",").map((col) => {
-          // NOTE: 文字列が `"` で囲まれているため、それを取り除いている。
-          return /"(?<col>.+)"/.exec(col)?.groups?.["col"] ?? "";
-        }),
-      );
+      const csv = e.target.result
+        .trim()
+        .replaceAll(/(\r\n|\n|\r)/g, "\n")
+        .split("\n")
+        .map((row) =>
+          row.split(",").map((col) => {
+            // NOTE: 文字列が `"` で囲まれているため、それを取り除いている。
+            return /"(?<col>.+)"/.exec(col)?.groups?.["col"] ?? col;
+          }),
+        );
 
       if (!atLeast(csv, 1)) {
         console.error("CSV is empty");
@@ -70,22 +77,49 @@ export const App = ({ config }: Props) => {
       }
 
       const [header, ...contents] = csv;
-      const { success, error } = TogglCsvHeader.safeParse(header);
+      const data = match(header)
+        .when(
+          (h) => Toggl.safeParse(h).success,
+          () => {
+            return (contents as Toggl[]).map((row) => ({
+              date: row[7].replaceAll("-", "/"),
+              amount: config.feeMap(row[5]),
+              memo: row[5],
+            }));
+          },
+        )
+        .when(
+          (h) => TogglV2.safeParse(h).success,
+          () => {
+            return (contents as TogglV2[]).map((row) => ({
+              date: row[6].replaceAll("-", "/"),
+              amount: config.feeMap(row[0]),
+              memo: row[0],
+            }));
+          },
+        )
+        .when(
+          (h) => PayPay.safeParse(h).success,
+          () => {
+            return (contents as PayPay[])
+              .filter((row) => (row[1] as string) !== "-")
+              .map((row) => {
+                return {
+                  date: row[0].split(" ").at(0) ?? "1970/01/01",
+                  amount: Number(row[1]),
+                  memo: row[8],
+                };
+              });
+          },
+        )
+        .otherwise(() => {});
 
-      if (!success) {
-        console.error(error);
+      if (!data) {
+        console.error("CSVのスキーマが正しくありません。");
         return;
       }
 
-      setData(
-        contents
-          .filter((row) => atLeast(row, 13))
-          .map((row) => ({
-            date: row[7].replaceAll("-", "/"),
-            amount: config.feeMap(row[5]),
-            memo: row[5],
-          })),
-      );
+      setData(data);
     };
 
     reader.addEventListener("load", listener);
